@@ -1,18 +1,366 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-*/
-
 .page {
-  min-inline-size: 320px;
-  min-block-size: 100dvb;
-  max-inline-size: 1440px;
   margin: 0 auto;
+  padding-block: 120px 100px;
+  font-family: var(--main-font);
+  background-image: var(--bg-gradient-horizontal), var(--bg-gradient-vertical), var(--bg-gradient-darkening);
+  background-size: cover;
+  background-attachment: fixed;
+  min-inline-size: 320px;
+  min-block-size: 100dvh;
+  max-inline-size: 1440px;
+  font-variation-settings: 'wght' var(--content-weight);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 101px;
+  border: 2px solid var(--color-accent-dark);
+  font-family: var(--accent-font);
+  background-color: var(--color-accent-light);
+  inline-size: clamp(375px, 4.4rem + 40vw, 700px);
+  block-size: clamp(327px, 20.25rem + 1.15vw, 368px); 
+}
+
+.header__content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+
+.header__heading {
+  font-size: clamp(3.0625rem, 2.71rem + 1.5vw, 4.0625rem);
+}
+
+.header__subheading {
+  font-size: clamp(0.875rem, 0.675rem + 0.85vw, 1.4375rem);
+}
+
+.cards {
+  margin: 0 auto;
+  inline-size: clamp(375px, 4.4rem + 40vw, 700px);
+}
+
+.card {
+  border: 2px solid var(--color-accent-dark);
+  background-color: var(--color-accent-light);
+}
+
+.cards__list {
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+}
+
+.card__heading {
+  padding: 5px 10px;
+  font-size: 18px;
+  font-variation-settings: 'wght' var(--heading-weight);
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 25px;
+}
+
+.card__paragraph {
+  font-size: 18px;
+  letter-spacing: 0.05px;
+  line-height: 1.17;
+}
+
+.card__image-container {
+  position: relative;
+  border-bottom: 2px solid var(--color-accent-dark);
+  overflow: hidden;
+}
+
+.card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.sepia {
+  filter: sepia(60%);
+}
+
+.neon {
+  filter: saturate(400%);
+}
+
+.hue-rotate {
+  filter: hue-rotate(30deg);
+}
+
+.invert {
+  filter: invert(1) contrast(0.6) brightness(1.2);
+}
+
+.grayscale {
+  filter: grayscale(0.7) sepia(0.8) contrast(0.9);
+}
+
+.blur {
+  filter: blur(16px);
+}
+
+.hue-rotate-saturate {
+  filter: hue-rotate(90deg) contrast(0.5) saturate(160%);
+}
+
+.card__image-label {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  opacity: 0.5;
+  font-family: var(--accent-font);
+  font-size: 14px;
+  text-transform: uppercase;
+  mix-blend-mode: hard-light;
+}
+
+.card__buttons {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+}
+
+.contour {
+  transition: fill 0.1s linear;
+}
+
+.core {
+  transition: fill 0.3s linear;
+  transition-delay: 0.03s;
+}
+
+.main-body {
+  transition: fill 0.3s linear;
+}
+
+.sparks {
+  opacity: 0;
+}
+
+.card__icon-button {
+  margin-bottom: -6px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  transition: border 0.3s ease;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    border: 2px solid var(--color-accent-dark);
+  }
+
+  &:hover {
+    .core {
+      fill: var(--animation-color);
+      transition-delay: 0;
+    }
+
+    .main-body {
+      fill: var(--animation-color);
+      transition-delay: 0.05s;
+    }
+  }
+
+  &:active {
+    .core {
+      fill: var(--animation-fill-color);
+      transition-delay: 0;
+    }
+
+    .main-body {
+      fill: var(--animation-fill-color);
+      transition-delay: 0.05s;
+    }
+  }
+
+  &:has(.is-liked) {
+    .contour {
+      fill: var(--animation-fill-color);
+      transition-delay: 0.06s;
+      transition-duration: 0.3s;
+    }
+
+    .core {
+      fill: var(--animation-fill-color);
+    }
+
+    .main-body {
+      fill: var(--animation-fill-color);
+      transition-delay: 0.05s;
+    }
+  }
+}
+
+.like-icon.is-liked {
+  .heart {
+    transform-origin: center;
+    animation: heart-scale 0.3s ease-in 0.1s;
+  }
+
+  .sparks {
+    animation: sparks-flash 0.3s ease-in 0.3s;
+  }   
+}
+
+.card__like-button {
+  border: 2px solid var(--color-accent-dark);
+  font-family: var(--accent-font);
+  line-height: 0.9;
+  background-color: transparent;
+  cursor: pointer;
+  inline-size: 130px;
+  block-size: 38px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 52px;
+}
+
+.footer__icon {
+  display: inline-block;
+  fill: var(--color-accent-light);
+  inline-size: 21px;
+  block-size: 21px;
+}
+
+.footer__button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid var(--color-accent-dark);
+  padding: 15px 20px;
+  background-color: var(--color-accent-light);
+  cursor: pointer;
+}
+
+.footer__button-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer__modal {
+  padding: 30px;
+  background-color: var(--color-accent-light);
+  inline-size: clamp(341px, 336.8px + 1.13vw, 353px);
+
+  &[open]::backdrop {
+    background-color: rgb(0 0 0 / 0.6);
+  }
+}
+
+.footer__modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.footer__modal-text {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer__modal-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  inline-size: 39px;
+  block-size: 39px;
+}
+
+.footer__modal-paragraph {
+  font-family: var(--accent-font);
+  font-size: 14px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.footer__modal-button {
+  border: 2px solid var(--color-accent-dark);
+  padding-block: 12.5px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button__text {
+  position: relative;
+  z-index: 2;
+  color: var(--color-accent-light);
+  font-family: var(--accent-font);
+  font-size: 14px;
+  line-height: 0.9;
+  white-space: nowrap;
+  mix-blend-mode: difference;
+}
+
+.card__like-button,
+.footer__button,
+.footer__modal-button {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: var(--color-accent-dark);
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(-100%);
+  } 
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    box-shadow: 2px 2px 0 var(--color-accent);
+  }
+
+  &:hover::before {
+    transform: translateX(0);
+  }
+}
+
+@supports (-webkit-text-stroke: 1px var(--color-accent-light)) {
+  .card__image-label {
+    -webkit-text-stroke: 1px var(--color-accent-light);
+  }
+}
+
+@media (width <= 376px) {
+  .page {
+    padding-block: 100px;
+  }
+
+  .cards__list {
+    gap: 57px;
+  }
+
+  .footer__button-text {
+    flex-direction: column;
+  }
+
+  .footer__icon {
+    inline-size: 28px;
+    block-size: 28px;
+  }
 }
