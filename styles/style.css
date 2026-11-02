@@ -20,7 +20,7 @@
   padding-block: clamp(122px, 7.45rem + 0.75vw, 130px);
   font-family: var(--accent-font);
   background-color: var(--color-accent-light);
-  inline-size: clamp(375px, 4.4rem + 40vw, 700px);
+  inline-size: clamp(375px, 16.53rem + 30.52vw, 700px);
 }
 
 .header__content {
@@ -43,7 +43,7 @@
 .cards {
   margin: 0 auto;
   padding-top: 100px;
-  inline-size: clamp(375px, 4.4rem + 40vw, 700px);
+  inline-size: clamp(375px, 16.53rem + 30.52vw, 700px);
 }
 
 .card {
