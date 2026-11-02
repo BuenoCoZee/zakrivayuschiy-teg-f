@@ -20,7 +20,7 @@
   font-family: var(--accent-font);
   background-color: var(--color-accent-light);
   inline-size: clamp(375px, 4.4rem + 40vw, 700px);
-  block-size: clamp(327px, 19.54rem + 3.85vw, 368px); 
+  block-size: clamp(327px, 19.54rem + 3.85vw, 368px);
 }
 
 .header__content {
@@ -216,7 +216,7 @@
 
   .sparks {
     animation: sparks-flash 0.3s ease-in 0.3s;
-  }   
+  } 
 }
 
 .card__like-button {
